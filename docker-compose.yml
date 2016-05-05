@@ -1,0 +1,18 @@
+version: '2'
+services:
+  nginx:
+    build: ./nginx
+    ports:
+    - "8080:80"
+    depends_on:
+    - node
+  node:
+    build: .
+    ports:
+    - "3000:3000"
+    volumes:
+    - .:/app
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo:3.2
